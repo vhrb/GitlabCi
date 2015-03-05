@@ -13,6 +13,10 @@ use GitlabCi\HttpClient\Listener\AuthListener;
 
 /**
  * Simple API wrapper for GitlabCi
+ *
+ * @property-read \GitlabCi\Api\Projects $projects
+ * @property-read \GitlabCi\Api\Runners $runners
+ * @property-read \GitlabCi\Api\Builds $builds
  */
 class Client
 {
@@ -59,6 +63,10 @@ class Client
 
         $this->base_url     = $baseUrl;
         $this->httpClient   = new HttpClient($this->base_url, $this->options, $httpClient);
+    }
+
+    public function __get($name) {
+        return $this->api($name);
     }
 
     /**
