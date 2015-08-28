@@ -1,7 +1,7 @@
 {
 	"name": "vhrb/php-gitlab-ci-api",
 	"type": "library",
-	"description": "GitLab CI API client",
+	"description": "GitLab CI API client forked from Kron0S/GitlabCi",
 	"keywords": [
 		"gitlab ci",
 		"api"
