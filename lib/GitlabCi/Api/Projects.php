@@ -4,14 +4,20 @@ namespace GitlabCi\Api;
 
 class Projects extends AbstractApi
 {
-	public function all()
+	public function all($page = 0, $per_page = self::PER_PAGE)
 	{
-		return $this->get('projects');
+		return $this->get('projects', [
+			'page' => $page,
+			'per_page' => $per_page,
+		]);
 	}
 
-	public function owned()
+	public function owned($page = 0, $per_page = self::PER_PAGE)
 	{
-		return $this->get('projects/owned');
+		return $this->get('projects/owned', [
+			'page' => $page,
+			'per_page' => $per_page,
+		]);
 	}
 
 	public function show($project_id)
