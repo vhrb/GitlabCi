@@ -1,5 +1,5 @@
 {
-	"name": "kron0s/php-gitlab-ci-api",
+	"name": "vhrb/php-gitlab-ci-api",
 	"type": "library",
 	"description": "GitLab CI API client",
 	"keywords": ["gitlab ci", "api"],
