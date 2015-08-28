@@ -7,68 +7,68 @@ use GitlabCi\Exception\RuntimeException;
 
 abstract class AbstractModel
 {
-    protected static $_properties;
+	protected static $_properties;
 
-    protected $_data = array();
-    protected $_client = null;
+	protected $_data = [];
+	protected $_client = NULL;
 
-    public function getClient()
-    {
-        return $this->_client;
-    }
+	public function api($api)
+	{
+		return $this->getClient()->api($api);
+	}
 
-    public function setClient(Client $client = null)
-    {
-        if (null !== $client) {
-            $this->_client = $client;
-        }
+	public function getClient()
+	{
+		return $this->_client;
+	}
 
-        return $this;
-    }
+	public function setClient(Client $client = NULL)
+	{
+		if (NULL !== $client) {
+			$this->_client = $client;
+		}
 
-    public function api($api)
-    {
-        return $this->getClient()->api($api);
-    }
+		return $this;
+	}
 
-    public function hydrate(array $data = array())
-    {
-        if (!empty($data)) {
-            foreach ($data as $k => $v) {
-                if (in_array($k, static::$_properties)) {
-                    $this->$k = $v;
-                }
-            }
-        }
+	public function hydrate(array $data = [])
+	{
+		if (!empty($data)) {
+			foreach ($data as $k => $v) {
+				if (in_array($k, static::$_properties)) {
+					$this->$k = $v;
+				}
+			}
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function __set($property, $value)
-    {
-        if (!in_array($property, static::$_properties)) {
-            throw new RuntimeException(sprintf(
-                'Property "%s" does not exist for %s object', $property, get_called_class()
-            ));
-        }
+	public function __get($property)
+	{
+		if (!in_array($property, static::$_properties)) {
+			throw new RuntimeException(sprintf(
+				'Property "%s" does not exist for %s object',
+				$property, get_called_class()
+			));
+		}
 
-        $this->_data[$property] = $value;
-    }
+		if (isset($this->_data[$property])) {
+			return $this->_data[$property];
+		}
 
-    public function __get($property)
-    {
-        if (!in_array($property, static::$_properties)) {
-            throw new RuntimeException(sprintf(
-                'Property "%s" does not exist for %s object',
-                $property, get_called_class()
-            ));
-        }
+		return NULL;
+	}
 
-        if (isset($this->_data[$property])) {
-            return $this->_data[$property];
-        }
+	public function __set($property, $value)
+	{
+		if (!in_array($property, static::$_properties)) {
+			throw new RuntimeException(sprintf(
+				'Property "%s" does not exist for %s object', $property, get_called_class()
+			));
+		}
 
-        return null;
-    }
+		$this->_data[$property] = $value;
+	}
 
 }

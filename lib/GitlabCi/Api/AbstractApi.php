@@ -11,77 +11,77 @@ use GitlabCi\Client;
  */
 abstract class AbstractApi implements ApiInterface
 {
-    /**
-     * Default entries per page
-     */
-    const PER_PAGE = 20;
+	/**
+	 * Default entries per page
+	 */
+	const PER_PAGE = 20;
 
-    /**
-     * The client
-     *
-     * @var Client
-     */
-    protected $client;
+	/**
+	 * The client
+	 *
+	 * @var Client
+	 */
+	protected $client;
 
-    /**
-     * @param Client $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
+	/**
+	 * @param Client $client
+	 */
+	public function __construct(Client $client)
+	{
+		$this->client = $client;
+	}
 
-    public function configure()
-    {
-    }
+	public function configure()
+	{
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function get($path, array $parameters = array(), $requestHeaders = array())
-    {
-        $response = $this->client->getHttpClient()->get($path, $parameters, $requestHeaders);
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function get($path, array $parameters = [], $requestHeaders = [])
+	{
+		$response = $this->client->getHttpClient()->get($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
-    }
+		return $response->getContent();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function post($path, array $parameters = array(), $requestHeaders = array())
-    {
-        $response = $this->client->getHttpClient()->post($path, $parameters, $requestHeaders);
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function post($path, array $parameters = [], $requestHeaders = [])
+	{
+		$response = $this->client->getHttpClient()->post($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
-    }
+		return $response->getContent();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function patch($path, array $parameters = array(), $requestHeaders = array())
-    {
-        $response = $this->client->getHttpClient()->patch($path, $parameters, $requestHeaders);
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function patch($path, array $parameters = [], $requestHeaders = [])
+	{
+		$response = $this->client->getHttpClient()->patch($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
-    }
+		return $response->getContent();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function put($path, array $parameters = array(), $requestHeaders = array())
-    {
-        $response = $this->client->getHttpClient()->put($path, $parameters, $requestHeaders);
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function put($path, array $parameters = [], $requestHeaders = [])
+	{
+		$response = $this->client->getHttpClient()->put($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
-    }
+		return $response->getContent();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function delete($path, array $parameters = array(), $requestHeaders = array())
-    {
-        $response = $this->client->getHttpClient()->delete($path, $parameters, $requestHeaders);
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function delete($path, array $parameters = [], $requestHeaders = [])
+	{
+		$response = $this->client->getHttpClient()->delete($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
-    }
+		return $response->getContent();
+	}
 }
